@@ -1,194 +1,168 @@
-# 📋 AI Activity Monitor — Development TODO
+# AI Activity Monitor
 
-This document tracks all tasks required to build the AI Activity Monitor.
+## 📌 Overview
 
----
+**AI Activity Monitor** is a Node.js-based desktop activity tracking tool that monitors the applications running on a user's system and records how long each application is actively used.
 
-# 🚀 Phase 1 — Project Setup
-
-Goal: Prepare the development environment.
-
-Tasks:
-
-* [x] Initialize Node.js project
-* [x] Create project folder structure
-* [x] Add README.md
-* [x] Add .gitignore
-* [x] Create main entry file
-* [x] Setup basic logging system
-
-Files created:
-
-src/main.js
-src/tracker/activityTracker.js
-src/database/activityLogs.json
+The goal of this project is to build a **lightweight productivity tracker** that runs locally and logs activity data for later analysis. This project is designed to be modular and extensible so that additional features like dashboards, AI analysis, and productivity insights can be added in the future.
 
 ---
 
-# 🖥 Phase 2 — Activity Tracking
+## 🚀 Features
 
-Goal: Detect user activity on the computer.
-
-Tasks:
-
-* [x] Detect active application
-* [x] Capture window title
-* [x] Record activity timestamp
-* [x] Save activity logs to JSON
-* [x] Prevent duplicate logging
-
-Example log:
-
-10:00 – Chrome
-10:15 – VS Code
-10:30 – Spotify
-
-Files:
-
-src/tracker/activityTracker.js
+* Detects the **currently active application**
+* Tracks **how long each application is used**
+* Logs activity changes automatically
+* Modular architecture for easy extension
+* Runs continuously in the background while the script is active
 
 ---
 
-# ⏱ Phase 3 — Activity Duration Tracking
+## 🛠️ Tech Stack
 
-Goal: Measure how long a user spends on each application.
-
-Tasks:
-
-* [ ] Track start time of application usage
-* [ ] Track end time when app changes
-* [ ] Calculate time spent per app
-* [ ] Store duration in logs
-
-Example:
-
-10:00 – Chrome (15 minutes)
-10:15 – VS Code (45 minutes)
-
-Files:
-
-src/tracker/activityTracker.js
+* **Node.js (v20+)**
+* **JavaScript (ES Modules)**
+* **active-win** – used to detect the currently active window/application
 
 ---
 
-# 💤 Phase 4 — Idle Detection
+## 📂 Project Structure
 
-Goal: Detect when the user is inactive.
-
-Tasks:
-
-* [ ] Detect keyboard inactivity
-* [ ] Detect mouse inactivity
-* [ ] Log idle periods
-* [ ] Add idle threshold configuration
-
-Example:
-
-10:30 – Idle (5 minutes)
-
-Files:
-
-src/tracker/idleDetector.js
-
----
-
-# 💾 Phase 5 — Data Storage
-
-Goal: Improve activity storage system.
-
-Tasks:
-
-* [x] Save logs to JSON
-* [ ] Create database helper module
-* [ ] Add log retrieval functions
-* [ ] Optimize large log storage
-
-Files:
-
-src/database/db.js
+```
+ai-activity-monitor
+│
+├── src
+│   │
+│   ├── tracker
+│   │   ├── activityTracker.js
+│   │   ├── activeWindow.js
+│   │   └── durationCalculator.js
+│   │
+│   ├── services
+│   │   └── activityService.js
+│   │
+│   ├── database
+│   │   └── activityRepository.js
+│   │
+│   └── main.js
+│
+├── package.json
+└── README.md
+```
 
 ---
 
-# 🌐 Phase 6 — Backend API
+## ⚙️ How It Works
 
-Goal: Provide activity data to other applications.
+1. The tracker checks the **active window every 2 seconds**.
+2. When the active application changes:
 
-Tasks:
+   * The previous application's usage time is calculated.
+3. The activity data is sent to the **service layer**.
+4. The service layer stores it using the **repository layer**.
 
-* [ ] Setup Express server
-* [ ] Create API endpoint for logs
-* [ ] Create API endpoint for summaries
-* [ ] Add API error handling
+Flow:
 
-Example endpoints:
-
-GET /logs
-GET /summary
-
-Files:
-
-src/server/api.js
-
----
-
-# 📊 Phase 7 — Dashboard
-
-Goal: Visualize user activity.
-
-Tasks:
-
-* [ ] Create dashboard layout
-* [ ] Display activity logs
-* [ ] Add activity charts
-* [ ] Add daily summary section
-
-Files:
-
-dashboard/index.html
-dashboard/style.css
-dashboard/script.js
+```
+Active Window Detection
+        ↓
+Activity Tracker
+        ↓
+Activity Service
+        ↓
+Activity Repository (Database Layer)
+```
 
 ---
 
-# 🧠 Phase 8 — AI Integration
+## ▶️ Installation
 
-Goal: Generate AI productivity summaries.
+### 1️⃣ Clone the repository
 
-Tasks:
+```
+git clone <repository-url>
+cd ai-activity-monitor
+```
 
-* [ ] Send activity data to AI
-* [ ] Generate daily summary
-* [ ] Generate productivity insights
-* [ ] Display AI insights in dashboard
+### 2️⃣ Install dependencies
 
-Example AI Output:
+```
+npm install
+```
 
-You spent **3 hours coding today**.
-Your most productive time was **10:00–12:00**.
+### 3️⃣ Install required package
 
-Files:
-
-src/ai/summaryGenerator.js
-
----
-
-# 🔮 Phase 9 — Advanced Features (Future)
-
-Tasks:
-
-* [ ] Weekly reports
-* [ ] Productivity score
-* [ ] Distraction alerts
-* [ ] Camera activity detection
-* [ ] Cloud sync
+```
+npm install active-win
+```
 
 ---
 
-# 📌 Current Progress
+## ▶️ Running the Application
 
-✔ Activity tracking system is working
-✔ Activity logs are being recorded
+Start the activity monitor:
 
-Next task:
+```
+node src/main.js
+```
 
-Implement **Activity Duration Tracking**
+Expected output:
+
+```
+Starting AI Activity Monitor...
+Saving activity: { app: 'Chrome', duration: 5 }
+```
+
+The tracker will monitor the active window every **2 seconds**.
+
+---
+
+## 📊 Example Activity Log
+
+Example of a tracked activity:
+
+```
+{
+  app: "Chrome",
+  duration: 15,
+  timestamp: "2026-03-13T10:30:00.000Z"
+}
+```
+
+---
+
+## 🔮 Future Improvements
+
+Planned enhancements for this project:
+
+* Idle detection
+* Screenshot capture
+* Local database storage (SQLite / PostgreSQL)
+* Productivity dashboard
+* AI-based activity insights
+* System tray background service
+* Desktop application using Electron
+
+---
+
+## 📖 Learning Purpose
+
+This project is also intended as a **learning project** to practice:
+
+* Node.js backend architecture
+* Modular code structure
+* System-level application tracking
+* Clean project organization
+* Real-world project development workflow
+
+---
+
+## 👨‍💻 Author
+
+Developed by **Karthikeya** as part of a hands-on project to build a real-world activity tracking application using Node.js.
+
+---
+
+## 📜 License
+
+This project is open-source and available under the **MIT License**.
