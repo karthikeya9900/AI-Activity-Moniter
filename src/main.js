@@ -1,11 +1,11 @@
-import { trackActivity } from "./tracker/activityTracker.js";
+import { startTracker } from "./tracker/activityTracker.js";
 import { captureScreenshot } from "./tracker/screenshotTracker.js";
 
 console.log("AI Activity Monitor Started");
 
 // activity tracking
 setInterval(() => {
-  trackActivity();
+  startTracker();
 }, 5000);
 
 // screenshot capture

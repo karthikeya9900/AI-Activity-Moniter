@@ -10,12 +10,12 @@ Goal: Prepare the development environment.
 
 Tasks:
 
-* [x] Initialize Node.js project
-* [x] Create project folder structure
-* [x] Add README.md
-* [x] Add .gitignore
-* [x] Create main entry file
-* [x] Setup basic logging system
+- [x] Initialize Node.js project
+- [x] Create project folder structure
+- [x] Add README.md
+- [x] Add .gitignore
+- [x] Create main entry file
+- [x] Setup basic logging system
 
 Files created:
 
@@ -31,11 +31,11 @@ Goal: Detect user activity on the computer.
 
 Tasks:
 
-* [x] Detect active application
-* [x] Capture window title
-* [x] Record activity timestamp
-* [x] Save activity logs to JSON
-* [x] Prevent duplicate logging
+- [x] Detect active application
+- [x] Capture window title
+- [x] Record activity timestamp
+- [x] Save activity logs to JSON
+- [x] Prevent duplicate logging
 
 Example log:
 
@@ -55,10 +55,10 @@ Goal: Measure how long a user spends on each application.
 
 Tasks:
 
-* [ ] Track start time of application usage
-* [ ] Track end time when app changes
-* [ ] Calculate time spent per app
-* [ ] Store duration in logs
+- [ ] Track start time of application usage
+- [ ] Track end time when app changes
+- [ ] Calculate time spent per app
+- [ ] Store duration in logs
 
 Example:
 
@@ -77,10 +77,10 @@ Goal: Detect when the user is inactive.
 
 Tasks:
 
-* [ ] Detect keyboard inactivity
-* [ ] Detect mouse inactivity
-* [ ] Log idle periods
-* [ ] Add idle threshold configuration
+- [ ] Detect keyboard inactivity
+- [ ] Detect mouse inactivity
+- [ ] Log idle periods
+- [ ] Add idle threshold configuration
 
 Example:
 
@@ -98,10 +98,10 @@ Goal: Improve activity storage system.
 
 Tasks:
 
-* [x] Save logs to JSON
-* [ ] Create database helper module
-* [ ] Add log retrieval functions
-* [ ] Optimize large log storage
+- [x] Save logs to JSON
+- [ ] Create database helper module
+- [ ] Add log retrieval functions
+- [ ] Optimize large log storage
 
 Files:
 
@@ -115,10 +115,10 @@ Goal: Provide activity data to other applications.
 
 Tasks:
 
-* [ ] Setup Express server
-* [ ] Create API endpoint for logs
-* [ ] Create API endpoint for summaries
-* [ ] Add API error handling
+- [ ] Setup Express server
+- [ ] Create API endpoint for logs
+- [ ] Create API endpoint for summaries
+- [ ] Add API error handling
 
 Example endpoints:
 
@@ -137,10 +137,10 @@ Goal: Visualize user activity.
 
 Tasks:
 
-* [ ] Create dashboard layout
-* [ ] Display activity logs
-* [ ] Add activity charts
-* [ ] Add daily summary section
+- [ ] Create dashboard layout
+- [ ] Display activity logs
+- [ ] Add activity charts
+- [ ] Add daily summary section
 
 Files:
 
@@ -156,10 +156,10 @@ Goal: Generate AI productivity summaries.
 
 Tasks:
 
-* [ ] Send activity data to AI
-* [ ] Generate daily summary
-* [ ] Generate productivity insights
-* [ ] Display AI insights in dashboard
+- [ ] Send activity data to AI
+- [ ] Generate daily summary
+- [ ] Generate productivity insights
+- [ ] Display AI insights in dashboard
 
 Example AI Output:
 
@@ -176,17 +176,18 @@ src/ai/summaryGenerator.js
 
 Tasks:
 
-* [ ] Weekly reports
-* [ ] Productivity score
-* [ ] Distraction alerts
-* [ ] Camera activity detection
-* [ ] Cloud sync
+- [ ] Weekly reports
+- [ ] Productivity score
+- [ ] Distraction alerts
+- [ ] Camera activity detection
+- [ ] Cloud sync
 
 ---
 
 # 📌 Current Progress
 
 ✔ Activity tracking system is working
+
 ✔ Activity logs are being recorded
 
 Next task:

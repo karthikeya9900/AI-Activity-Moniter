@@ -1,60 +1,23 @@
-import activeWin from "active-win";
-import fs from "fs";
+import getActiveWindow from "./activeWindow.js";
+import calculateDuration from "./durationCalculator.js";
+import { saveActivity } from "../services/activityService.js";
 
-const logFile = "./src/database/activityLogs.json";
+let lastApp = null;
+let startTime = Date.now();
 
-let currentApp = null;
-let currentTitle = null;
-let startTime = null;
+export function startTracker() {
+  setInterval(async () => {
+    const activeApp = await getActiveWindow();
 
-export async function trackActivity() {
-  try {
-    const window = await activeWin();
-    if (!window) return;
+    if (lastApp !== activeApp) {
+      const duration = calculateDuration(startTime);
 
-    const app = window.owner.name;
-    const title = window.title;
-
-    // first app detection
-    if (!currentApp) {
-      currentApp = app;
-      currentTitle = title;
-      startTime = Date.now();
-      return;
-    }
-
-    // if app changes
-    if (app !== currentApp || title !== currentTitle) {
-      const endTime = Date.now();
-      const duration = Math.floor((endTime - startTime) / 1000);
-
-      const activity = {
-        app: currentApp,
-        title: currentTitle,
-        start: new Date(startTime).toLocaleTimeString(),
-        end: new Date(endTime).toLocaleTimeString(),
-        duration: duration,
-      };
-
-      console.log("Activity Saved:", activity);
-
-      // ensure file exists
-      if (!fs.existsSync(logFile)) {
-        fs.writeFileSync(logFile, "[]");
+      if (lastApp) {
+        await saveActivity(lastApp, duration);
       }
 
-      const logs = JSON.parse(fs.readFileSync(logFile));
-
-      logs.push(activity);
-
-      fs.writeFileSync(logFile, JSON.stringify(logs, null, 2));
-
-      // reset tracking
-      currentApp = app;
-      currentTitle = title;
+      lastApp = activeApp;
       startTime = Date.now();
     }
-  } catch (error) {
-    console.error("Tracking error:", error);
-  }
+  }, 2000);
 }
